@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design and Implementation of Intelligent Lesson Preparation Assistant System based on AI </title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Simplified CSS files -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/tabs.css">
+  <link rel="stylesheet" href="css/chat.css">
+  <link rel="stylesheet" href="css/recource.css">
+  <link rel="stylesheet" href="css/aiDetection.css">
+  <link rel="stylesheet" href="css/analysis.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="https://png.pngtree.com/png-vector/20231110/ourmid/pngtree-chinese-dragon-traditional-spring-festival-red-illustration-png-image_10535662.png" alt="Dragon Icon" class="dragon-icon">
+      <h1>Design and Implementation of Intelligent Lesson Preparation Assistant System based on AI </h1>
+      <!--<p>Quickly and efficiently prepare for your Chinese language and culture courses.</p> -->
+    </header>
+    
+    <div class="tabs">
+      <button class="tab-button active" data-tab="chat">Chatbot</button>
+      <button class="tab-button" data-tab="lesson-plan">Syllabus Generator</button>
+      <button class="tab-button" data-tab="exercise">Exercises</button>
+      <button class="tab-button" data-tab="resources">Resources</button>
+      <button class="tab-button" data-tab="analysis">Analysis</button>
+      <button class="tab-button" data-tab="ai-detection">AI Detection</button>
+    </div>
+   
+    <!-- Chatbot Tab -->
+    <div class="tab-content active" id="chat">
+      <div class="chat-box" id="content"></div>
+      <div class="input-container">
+        <input type="text" id="chatInput" placeholder="Ask any questions about Chinese language teaching...">
+        <button id="sendButton"><i class="fas fa-paper-plane"></i> Send</button>
+      </div>
+    </div>
+  
+    <!-- Lesson Plan Tab -->
+    <div class="tab-content" id="lesson-plan">
+      <div class="prompt-header">
+        <h2><i class="fas fa-book-open"></i> Lesson Plan / Syllabus Generator</h2>
+        <p>Enter your topic to generate a complete lesson plan with objectives, activities, and assessment</p>
+      </div>
+      <div class="input-area">
+        <input type="text" id="lesson-plan-input" placeholder="E.g.: 'Chinese New Year traditions for beginners'">
+        <button onclick="generateLessonPlan()"><i class="fas fa-magic"></i> Generate</button>
+      </div>
+      <div id="lesson-plan-output" class="output-box"></div>
+    </div>
+  
+    <!-- Exercise Generator Tab -->
+    <div class="tab-content" id="exercise">
+      <div class="prompt-header">
+        <h2><i class="fas fa-edit"></i> Practice Generator</h2>
+        <p>Create customized exercises for your students based on any topic.</p>
+      </div>
+      <div class="input-area">
+        <input type="text" id="exercise-input" placeholder="E.g.: 'HSK 1 vocabulary practice'">
+        <button onclick="generateExercises()"><i class="fas fa-tasks"></i> Generate</button>
+      </div>
+      <div id="exercise-output" class="output-box"></div>
+    </div>
+  
+    <!-- Multimedia Resources Tab -->
+    <div class="tab-content" id="resources">
+      <div class="prompt-header">
+        <h2><i class="fas fa-photo-video"></i>Multimedia Resources </h2>
+        <p>Get curated videos and articles for your lessons</p>
+      </div>
+      <div class="input-area">
+        <input type="text" id="resources-input" placeholder="E.g.: 'Chinese calligraphy demonstration'">
+        <button onclick="generateAllResources()"><i class="fas fa-search"></i> Search</button>
+      </div>
+      <div id="resources-output" class="output-box"></div>
+      
+      <!-- YouTube Videos Section -->
+      <div class="resource-grid" id="youtube-resources">
+        <!-- Dynamically inserted YouTube resource cards -->
+      </div>
+      
+      <!-- Wikipedia Resources Section -->
+      <div class="wiki-resources-section">
+        <h3>Wikipedia Resources</h3>
+        <div id="wiki-resources" class="resource-grid">
+          <!-- Dynamically inserted Wikipedia resource cards -->
+        </div>
+      </div>
+    </div>
+  
+    <!-- Student Analysis Tab -->
+    <div class="tab-content" id="analysis">
+      <div class="prompt-header">
+        <h2><i class="fas fa-chart-line"></i> Student Analysis</h2>
+        <p>Upload an Excel file containing student data for analysis.</p>
+      </div>
+      <div class="input-area">
+        <div class="file-upload-wrapper">
+          <input 
+            type="file"
+            id="excel-upload"
+            accept=".xls,.xlsx"
+            style="display: none;"
+            onchange="handleFileChange(event)"
+          />
+          <label for="excel-upload" class="file-upload-label">
+            <i class="fas fa-upload"></i> Select Excel File
+          </label>
+          <span id="file-name" class="file-name">No file chosen</span>
+        </div>
+        <button onclick="generateStudentAnalysis()">Analyze</button>
+      </div>
+      <div id="analysis-output" class="output-box">
+        <!-- Canvas for the first chart -->
+        <canvas id="scoreChart" width="400" height="200"></canvas>
+
+        <!-- Canvas for the second chart -->
+        <canvas id="studentGradesChart" width="400" height="200" style="margin-top: 20px;"></canvas>
+        
+        <!-- Container for the AI response -->
+        <div id="ai-response" style="margin-top: 20px;"></div>
+      </div>
+    </div>
+    
+    <!-- AI Detection Tab -->
+    <div class="tab-content" id="ai-detection">
+      <div class="prompt-header">
+        <h2><i class="fas fa-search"></i> AI Detection</h2>
+        <p>Upload a paragraph to detect AI-generated content.</p>
+      </div>
+      <div class="input-area">
+        <textarea id="ai-detection-input" placeholder="Paste paragraph here..."></textarea>
+        <button onclick="generateAIDetection()"><i class="fas fa-search"></i> Detect AI</button>
+      </div>
+      <div id="ai-detection-output" class="output-box">
+        <figure class="chart-one animate">
+          <svg role="img" xmlns="http://www.w3.org/2000/svg">
+            <title>AI Detection</title>
+            <desc>Shows the likelihood that the content is AI-generated</desc>
+            <circle class="circle-background"/>
+            <circle class="circle-foreground"/>
+          </svg>
+          <figcaption>Detecting AI...</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- Add Chart.js first -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/prompts.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/analysis.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

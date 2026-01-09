@@ -1,0 +1,171 @@
+:root {
+    --primary-color: #2ea043; /* GitHub green */
+    --secondary-color: #1f6feb; /* GitHub blue */
+    --accent-color: #d29922; /* GitHub gold */
+    --background-color: #0d1117;
+    --card-bg: #161b22;
+    --text-color: #e6edf3;
+    --border-color: #30363d;
+    --hover-bg: #21262d;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 24px rgba(1, 4, 9, 0.5);
+}
+
+.dragon-icon {
+    height: 100px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+h1 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header p {
+    color: #8b949e;
+    font-size: 1.1em;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Input Areas */
+.input-area {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    justify-content: center;
+}
+
+.input-area input, .input-area textarea {
+    flex: 1;
+    padding: 14px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.input-area textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.input-area input:focus, .input-area textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.15);
+    outline: none;
+}
+
+.input-area button {
+    background: var(--primary-color);
+    color: white;
+    border: 1px solid rgba(240, 246, 252, 0.1);
+    border-radius: 8px;
+    padding: 0 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-area button:hover {
+    background: #238636;
+    transform: translateY(-1px);
+    border-color: rgba(240, 246, 252, 0.3);
+}
+
+.input-area button:disabled {
+    background: #94d3a2;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Output Boxes */
+.output-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 25px;
+    margin-top: 25px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(1, 4, 9, 0.3);
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.output-box.active {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 12px rgba(210, 153, 34, 0.5);
+}
+
+h2, h3 {
+    color: var(--text-color);
+    margin-top: 0;
+}
+
+button, .input-area input, .tab-button {
+    transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+}
+
+*:focus-visible {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 2px;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-track {
+    background: var(--card-bg);
+}
+
+/* Mobile Responsive Layout */
+@media (max-width: 600px) {
+    .input-area {
+        flex-direction: column;
+    }
+
+    .input-area input,
+    .input-area textarea,
+    .input-area button {
+        width: 100%;
+    }
+}

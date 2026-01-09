@@ -1,0 +1,35 @@
+.file-upload-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Upload Button Styling */
+.file-upload-label {
+  cursor: pointer;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background-color: var(--button-bg, #168e2a); 
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 14px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.file-upload-label:hover {
+  background-color: var(--button-hover, #0a3d12);
+  transform: translateY(-1px);
+}
+
+/* Displayed File Name */
+.file-name {
+  color: var(--text-color-light, #aaa);
+  font-style: italic;
+  font-size: 14px;
+  word-break: break-all;
+}

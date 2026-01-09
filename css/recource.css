@@ -1,0 +1,164 @@
+/* Enhanced Resource Grid Layout */
+.resource-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  margin-top: 20px;
+}
+
+/* Universal Card Base */
+.resource-card,
+.wiki-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+/* YouTube Card Specific */
+.resource-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.resource-card .video-thumbnail {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%;
+}
+
+.resource-card .video-thumbnail img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.resource-card:hover .video-thumbnail img {
+  transform: scale(1.05);
+}
+
+.resource-card .play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.resource-card .play-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.resource-card .video-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 12px 10px 6px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.resource-card .video-channel {
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-color-light);
+  margin-bottom: 15px;
+}
+
+/* Wikipedia Resource Card */
+.wiki-card {
+  background: linear-gradient(135deg, var(--card-bg), rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--border-color);
+  padding: 20px;
+  margin: 10px;
+  position: relative;
+}
+
+.wiki-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 0;
+}
+
+.wiki-card:hover::before {
+  opacity: 1;
+}
+
+.wiki-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.wiki-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.wiki-snippet {
+  font-size: 15px;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  line-height: 1.4;
+  position: relative;
+  z-index: 1;
+}
+
+.wiki-link {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: bold;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.wiki-link:hover {
+  color: #ff6659;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .resource-card,
+  .wiki-card {
+      margin: 10px 0;
+  }
+
+  .resource-card .video-title {
+      font-size: 15px;
+  }
+
+  .resource-card .video-channel {
+      font-size: 13px;
+  }
+
+  .wiki-title {
+      font-size: 18px;
+  }
+
+  .wiki-snippet {
+      font-size: 14px;
+  }
+}
