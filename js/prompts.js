@@ -95,5 +95,43 @@ Write your analysis clearly in Markdown format and include sections such as “O
    // New prompt for AI Detection
    aiDetection: (input) =>  `
 Analyze the following text for characteristics typical of AI-generated content. Consider factors such as repetitive phrasing, overly consistent sentence structure, lack of personal nuance, and unnatural transitions. Then, assign a likelihood score from 0 to 100—where 0 means it is almost certainly human-written and 100 means it is almost certainly AI-generated. Only output the numeric score.
-Text: "${input}"`
+Text: "${input}"`,
+
+   // PPT Generator prompt
+   pptGenerator: (topic) => `
+Please act as an expert in creating educational PowerPoint presentations and generate a complete PowerPoint presentation outline with slides content for the theme "${topic}".  
+The output should be organized in Markdown format and must include the following:
+
+# Presentation Title: [Title]
+
+## Slide 1: Title Slide
+- Title: [Main title]
+- Subtitle: [Subtitle if applicable]
+- Presenter: [Name/Institution]
+
+## Slide 2: Overview/Introduction
+- Brief introduction to the topic
+- Objectives of the presentation
+- What the audience will learn
+
+## Slide 3-10: Main Content Slides
+For each slide, provide:
+- **Slide Title**: [Clear and concise title]
+- **Bullet Points**: 
+  - Key point 1
+  - Key point 2
+  - Key point 3
+  - (Add 3-5 bullet points per slide)
+
+## Slide [N-1]: Summary/Key Takeaways
+- Main points recap
+- Important highlights
+
+## Slide [N]: Thank You / Q&A
+- Closing statement
+- Contact information (if applicable)
+- Q&A section
+
+Please generate approximately 8-12 slides total with clear, educational content suitable for teaching purposes. Ensure the content is well-structured, informative, and follows a logical flow. Use Markdown formatting for clear presentation.
+`
 };

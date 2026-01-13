@@ -37,6 +37,18 @@ async function generateExercises() {
     });
 }
 
+async function generatePPT() {
+    const topic = document.getElementById('ppt-generator-input').value.trim();
+    if (!topic) return showError('ppt-generator-output', 'Please enter a topic');
+    
+    await generateAIResponse({
+        input: topic,
+        outputElement: 'ppt-generator-output',
+        promptTemplate: PROMPT_TEMPLATES.pptGenerator(topic),
+        loadingText: 'Generating PowerPoint presentation outline...'
+    });
+}
+
 
 
 
