@@ -59,12 +59,12 @@ header p {
 /* Input Areas */
 .input-area {
     display: flex;
+    flex-direction: column;
     gap: 15px;
     margin-bottom: 25px;
-    justify-content: center;
 }
 
-.input-area input, .input-area textarea {
+.input-area input, .input-area textarea, .input-area select {
     flex: 1;
     padding: 14px 20px;
     border: 1px solid var(--border-color);
@@ -76,12 +76,46 @@ header p {
     color: var(--text-color);
 }
 
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-row label {
+    min-width: 140px;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.form-row input, .form-row select {
+    flex: 1;
+    padding: 14px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+.form-row select {
+    cursor: pointer;
+}
+
+.form-row input:focus, .form-row select:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.15);
+    outline: none;
+}
+
 .input-area textarea {
     min-height: 120px;
     resize: vertical;
 }
 
-.input-area input:focus, .input-area textarea:focus {
+.input-area input:focus, .input-area textarea:focus, .input-area select:focus {
     border-color: var(--secondary-color);
     box-shadow: 0 0 0 3px rgba(31, 111, 235, 0.15);
     outline: none;
@@ -92,13 +126,15 @@ header p {
     color: white;
     border: 1px solid rgba(240, 246, 252, 0.1);
     border-radius: 8px;
-    padding: 0 30px;
+    padding: 14px 30px;
     cursor: pointer;
     font-size: 16px;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    align-self: flex-start;
 }
 
 .input-area button:hover {

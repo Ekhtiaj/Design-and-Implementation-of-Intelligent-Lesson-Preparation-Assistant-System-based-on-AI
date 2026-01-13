@@ -98,8 +98,15 @@ Analyze the following text for characteristics typical of AI-generated content. 
 Text: "${input}"`,
 
    // PPT Generator prompt
-   pptGenerator: (topic) => `
-Please act as an expert in creating educational PowerPoint presentations and generate a complete PowerPoint presentation outline with slides content for the theme "${topic}".  
+   pptGenerator: (topic, numSlides, depthLevel, language, teachingLevel) => `
+Please act as an expert in creating educational PowerPoint presentations and generate a complete PowerPoint presentation outline with slides content according to the following specifications:
+
+**Topic**: "${topic}"
+**Number of Slides**: ${numSlides} slides
+**Depth Level**: ${depthLevel}
+**Language**: ${language}
+**Teaching Level**: ${teachingLevel}
+
 The output should be organized in Markdown format and must include the following:
 
 # Presentation Title: [Title]
@@ -114,7 +121,7 @@ The output should be organized in Markdown format and must include the following
 - Objectives of the presentation
 - What the audience will learn
 
-## Slide 3-10: Main Content Slides
+## Slide 3 to Slide ${numSlides - 1}: Main Content Slides
 For each slide, provide:
 - **Slide Title**: [Clear and concise title]
 - **Bullet Points**: 
@@ -123,15 +130,18 @@ For each slide, provide:
   - Key point 3
   - (Add 3-5 bullet points per slide)
 
-## Slide [N-1]: Summary/Key Takeaways
-- Main points recap
-- Important highlights
-
-## Slide [N]: Thank You / Q&A
+## Slide ${numSlides}: Summary/Key Takeaways or Thank You / Q&A
+- Main points recap (if summary slide)
 - Closing statement
-- Contact information (if applicable)
-- Q&A section
+- Q&A section (if applicable)
 
-Please generate approximately 8-12 slides total with clear, educational content suitable for teaching purposes. Ensure the content is well-structured, informative, and follows a logical flow. Use Markdown formatting for clear presentation.
+**Important Guidelines:**
+1. Generate exactly ${numSlides} slides total
+2. Depth Level: ${depthLevel === 'basic' ? 'Use simple language and basic concepts suitable for beginners' : depthLevel === 'standard' ? 'Use moderate detail with clear explanations' : 'Provide comprehensive and detailed content with in-depth analysis'}
+3. Language: All content must be in ${language === 'Chinese' ? 'Chinese (简体中文)' : 'English'}
+4. Teaching Level: Content should be appropriate for ${teachingLevel === 'primary' ? 'primary/elementary school students' : teachingLevel === 'secondary' ? 'secondary/high school students' : 'university/college students'}
+5. Ensure the content is well-structured, informative, and follows a logical flow
+6. Use Markdown formatting for clear presentation
+7. Adapt the complexity of vocabulary and concepts according to the teaching level specified
 `
 };

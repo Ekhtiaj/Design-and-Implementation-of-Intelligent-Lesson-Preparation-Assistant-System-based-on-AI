@@ -38,13 +38,22 @@ async function generateExercises() {
 }
 
 async function generatePPT() {
-    const topic = document.getElementById('ppt-generator-input').value.trim();
+    const topic = document.getElementById('ppt-topic-input').value.trim();
+    const numSlides = parseInt(document.getElementById('ppt-slides-input').value) || 8;
+    const depthLevel = document.getElementById('ppt-depth-select').value;
+    const language = document.getElementById('ppt-language-select').value;
+    const teachingLevel = document.getElementById('ppt-level-select').value;
+    
     if (!topic) return showError('ppt-generator-output', 'Please enter a topic');
+    
+    if (numSlides < 3 || numSlides > 12) {
+        return showError('ppt-generator-output', 'Number of slides must be between 3 and 12');
+    }
     
     await generateAIResponse({
         input: topic,
         outputElement: 'ppt-generator-output',
-        promptTemplate: PROMPT_TEMPLATES.pptGenerator(topic),
+        promptTemplate: PROMPT_TEMPLATES.pptGenerator(topic, numSlides, depthLevel, language, teachingLevel),
         loadingText: 'Generating PowerPoint presentation outline...'
     });
 }
