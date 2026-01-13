@@ -112,9 +112,9 @@ The output should be organized in Markdown format and must include the following
 # Presentation Title: [Title]
 
 ## Slide 1: Title Slide
-- Title: [Main title]
-- Subtitle: [Subtitle if applicable]
-- Presenter: [Name/Institution]
+[Main title]
+
+[Subtitle if applicable]
 
 ## Slide 2: Overview/Introduction
 - Brief introduction to the topic
@@ -122,13 +122,13 @@ The output should be organized in Markdown format and must include the following
 - What the audience will learn
 
 ## Slide 3 to Slide ${numSlides - 1}: Main Content Slides
-For each slide, provide:
-- **Slide Title**: [Clear and concise title]
-- **Bullet Points**: 
-  - Key point 1
-  - Key point 2
-  - Key point 3
-  - (Add 3-5 bullet points per slide)
+For each slide, provide ONLY the content in this format (DO NOT include labels like "Slide Title:" or "Bullet Points:"):
+
+## Slide X: [Clear and concise title]
+- Key point 1
+- Key point 2
+- Key point 3
+- (Add 3-5 bullet points per slide)
 
 ## Slide ${numSlides}: Summary/Key Takeaways or Thank You / Q&A
 - Main points recap (if summary slide)

@@ -52,13 +52,15 @@ const generateConfigJS = () => {
 
   const apiKey = escapeForJS(process.env.API_KEY || '');
   const youtubeKey = escapeForJS(process.env.YOUTUBE_API_KEY || '');
+  const unsplashKey = escapeForJS(process.env.UNSPLASH_ACCESS_KEY || 'bQ9hdwY7TAXz8I3SHY23-qQ6OhfaKUU6XLsztv8xFFg');
   const apiUrl = escapeForJS(process.env.API_URL || 'https://openrouter.ai/api/v1/chat/completions');
   const model = escapeForJS(process.env.MODEL || 'deepseek/deepseek-r1-distill-llama-70b:free');
 
   const configContent = `const API_KEY = '${apiKey}';
 const API_URL = "${apiUrl}";
 const MODEL = "${model}";
-const apiKey = '${youtubeKey}';`;
+const apiKey = '${youtubeKey}';
+const UNSPLASH_ACCESS_KEY = '${unsplashKey}';`;
 
   const configPath = path.join(__dirname, 'js', 'config.js');
   
@@ -72,6 +74,7 @@ const apiKey = '${youtubeKey}';`;
   console.log('Config.js file generated successfully at:', configPath);
   console.log('API_KEY loaded:', process.env.API_KEY ? 'YES (length: ' + process.env.API_KEY.length + ')' : 'NO');
   console.log('YOUTUBE_API_KEY loaded:', process.env.YOUTUBE_API_KEY ? 'YES (length: ' + process.env.YOUTUBE_API_KEY.length + ')' : 'NO');
+  console.log('UNSPLASH_ACCESS_KEY loaded:', unsplashKey ? 'YES' : 'NO');
   
   // Debug: Show actual values (masked)
   if (process.env.API_KEY) {
